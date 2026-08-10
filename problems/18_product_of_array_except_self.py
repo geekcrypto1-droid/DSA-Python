@@ -35,3 +35,26 @@ def solution(arr):
     return result
 
 print(solution(inputs))
+
+
+
+
+# A much much better solution
+class Solution(object):
+    def productExceptSelf(self, nums):
+        n = len(nums)
+        result = [1] * n
+        
+        # left pass
+        product = 1
+        for i in range(n):
+            result[i] = product
+            product *= nums[i]
+        
+        # right pass — multiply directly into result
+        product = 1
+        for i in range(n-1, -1, -1):
+            result[i] *= product
+            product *= nums[i]
+        
+        return result
